@@ -1,9 +1,9 @@
-from PIL import Image
+from PIL import Image, ImageOps
 from pathlib import Path
 import os, os.path
 
 imgs = []
-path ="E:/Pictures/testing"
+path ="your path here"
 valid_images = [".jpg", ".jpeg"]
 
 for file in os.listdir(path):
@@ -14,5 +14,6 @@ for file in os.listdir(path):
 
 for image in imgs:
     temp = image.convert('RGB')
+    temp = ImageOps.exif_transpose(temp)
     print(Path(image.filename).stem)
     temp.save(path + '/' + Path(image.filename).stem + '.pdf')
